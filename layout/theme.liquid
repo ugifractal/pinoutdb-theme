@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      {% if template_name == 'index' %}
+        Blog Sugiarto
+      {% else %}
+        Page: {{ page.title }}
+      {% endif %}
+    </title>
+    <!-- {{template_name}} -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% assign hash = now | date: '%s' %}    
+    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}?v={{hash}}">
+    <script type="text/javascript" src="{{ 'page.js' | asset_url}}?v={{hash}}"></script>
+    <link rel="stylesheet" href="{{pagiii_url}}/custom_css/editor/content_view.css">    
+  </head>
+  <body data-controller="search" class="bg-orange-50">
+    <div data-search-target="searchBar" class="hidden fixed z-50 w-full bg-white">
+      <div class="mt-10 ml-12 mr-12 flex mb-10">
+        <div class="grow">
+          <form action="{{root_url}}/search" method="get">
+            <input data-search-target="keyword" type="text" name="q" placeholder="Ketik untuk mencari..." 
+              class="w-full border-b-2 text-xl border-red-200 !outline-none"/>
+          </form>
+        </div>
+        <div class="w-5 ml-3">
+          <a data-action="click->search#hideSearchBar" class="text-red-400 text-2xl">X</a>
+        </div>
+      </div>
+    </div>    
+    {% render 'header', nama_web: site_name, root_url: root_url, site: site %}
+   
+    
+    <main style="" class="">      
+      <section style="" class="container mx-auto mt-16">
+        
+        {% if template_name == 'index' %}
+          <div style="" class="w-full lg:w-1/2 mx-auto text-center text-4xl text-black-300">
+          
+              Setiap waktu yang berlalu dalam kehidupan adalah pelajaran berharga!
+          
+          </div>
+        
+
+          <div style="" class="mt-28 text-center text-3xl">
+            <h2>Postingan Terbaru</h2>
+          </div>
+
+          <div style="" class="mt-5 flex flex-wrap">
+            {% for page in pages.latest_10 %}
+
+              <div style="" class="w-full lg:w-1/2 mt-10">
+                <div style="" class="bg-white mx-auto w-80 h-52 border-2 rounded drop-shadow-xl overflow-hidden">                
+                  <img src="{{pagiii_url}}/{{page.image_url}}"/>
+                </div>
+
+                <div style="" class="mx-auto w-80 mt-4">
+                  <div style="" class="text-gray-600">                  
+                    {{ page.created_at | date: "%d %b %Y" }}
+                  </div>
+                  <div style="" class="text-black-600 text-2xl">
+                    <a href="{{root_url}}/pages/{{page.handle}}">{{ page.title | truncate: 30 }}</a>
+                  </div>
+                  <div style="" class="text-gray-600 mt-5">
+                    {{ page.body_preview }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}                   
+          </div>
+          <div style="" class="mt-16 text-center">
+            <a href="{{root_url}}/pages" class="bg-red-300 text-white px-3 py-3 rounded">
+              Lihat Semua Postingan
+            </a>
+          </div>
+        {% endif %}
+
+        {% if template_name == 'pages'%}          
+          {{content_for_layout}}          
+        {% endif %}
+
+        {% if template_name == 'search'%}          
+          {{content_for_layout}}          
+        {% endif %}
+
+        {% if template_name == 'page' %}
+          <div class="mt-10">
+            {{content_for_layout}}
+          </div>
+        {% endif %}
+
+        <div style="" class="mt-16 flex">
+          <div class="w-full lg:w-1/2 pl-5 text-gray-600">
+            ©2023 sugiarto.
+          </div>
+
+          <div class="w-1/2 text-right pr-5 text-gray-600" data-controller="hello" data-root-url="{{root_url}}">
+            
+          </div>
+        </div>
+
+
+        
+
+        <div class="flex flex-wrap mt-10">
+          
+        </div>
+        
+      </section>
+    </main>
+  </body>
+</html>

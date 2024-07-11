@@ -1,0 +1,26 @@
+{
+  "name": "pagiii",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch:css": "npx tailwindcss build -i src/stylesheets/app.css -o assets/theme.css -w",
+    "build:css": "npx tailwindcss build -i src/stylesheets/app.css -o assets/theme.css",
+    "build:js": "./node_modules/.bin/esbuild src/javascripts/app.js --outfile=assets/page.js",
+    "watch:js": "./node_modules/.bin/esbuild src/javascripts/app.js --outfile=assets/page.js --watch --bundle",
+    "watch:all": "concurrently 'yarn run watch:css' 'yarn run watch:js'"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "esbuild-plugin-stimulus": "^0.1.5",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7"
+  },
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.1",
+    "concurrently": "^8.1.0",
+    "esbuild": "^0.17.10"
+  }
+}
