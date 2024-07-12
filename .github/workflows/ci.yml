@@ -14,4 +14,4 @@ jobs:
         with:
           cmd: install # will run `yarn install` command
       - name: Create release.zip
-          cmd: ./create-release.sh release
+        run: ./create-release.sh release
