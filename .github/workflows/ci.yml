@@ -5,9 +5,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Release
-        uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/')
+      - name: Setup nodejs 20.x
+        uses: actions/setup-node@v4
         with:
-          files: |
-            README.md
+          node-version: 20.x
+      - name: Yarn install
+        uses: borales/actions-yarn@v5
+        with:
+          cmd: install # will run `yarn install` command
+      - name: Create release.zip
+          cmd: ./create-release.sh release
