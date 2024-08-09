@@ -3,7 +3,7 @@
   <head>
     <title>
       {% if template_name == 'index' %}
-        Blog Sugiarto
+        Pinoutdb
       {% else %}
         Page: {{ page.title }}
       {% endif %}
@@ -53,11 +53,10 @@
 
               <div style="" class="w-full lg:w-1/2 mt-10">
                 <div style="" class="bg-white mx-auto w-80 h-52 border-2 rounded drop-shadow-xl overflow-hidden">                
-                  <img src="{{pagiii_url}}/{{page.image_url}}"/>
+                  <img src="{{page.metafield.photos[0]}}"/>
                 </div>
-
                 <div style="" class="mx-auto w-80 mt-4">
-                  <div style="" class="text-gray-600">                  
+                  <div style="" class="text-gray-600">
                     {{ page.created_at | date: "%d %b %Y" }}
                   </div>
                   <div style="" class="text-black-600 text-2xl">
@@ -68,7 +67,7 @@
                   </div>
                 </div>
               </div>
-            {% endfor %}                   
+            {% endfor %}
           </div>
           <div style="" class="mt-16 text-center">
             <a href="{{root_url}}/pages" class="bg-red-300 text-white px-3 py-3 rounded">
@@ -93,7 +92,7 @@
 
         <div style="" class="mt-16 flex">
           <div class="w-full lg:w-1/2 pl-5 text-gray-600">
-            ©2023 sugiarto.
+            ©2024 pinoutdb.
           </div>
 
           <div class="w-1/2 text-right pr-5 text-gray-600" data-controller="hello" data-root-url="{{root_url}}">
